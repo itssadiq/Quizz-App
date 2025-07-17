@@ -5,6 +5,17 @@ const nextBtn = document.querySelector(".next");
 
 nextBtn.addEventListener("click", showNextQuestion);
 
+// const result = JSON.parse(localStorage.getItem("result")) || {
+//   right: 0,
+//   wrong: 0,
+// };
+const result = {
+  right: 0,
+  wrong: 0,
+};
+let correctAnswer = "";
+let userAnswer = "";
+
 let question = 0;
 renderQuestion(question);
 updateQuestionCount();
@@ -13,6 +24,13 @@ function showNextQuestion() {
   if (question >= 10) {
     return;
   } else {
+    if (userAnswer == correctAnswer) {
+      result.right++;
+    } else {
+      result.wrong++;
+    }
+    console.log(result);
+    localStorage.setItem("result", JSON.stringify(result));
     question++;
     renderQuestion(question);
   }
@@ -22,7 +40,8 @@ function renderQuestion(index) {
   const data = questions[index];
   if (data) {
     const question = data.question;
-    const correctAnswer = data.correct_answer;
+    correctAnswer = data.correct_answer;
+
     const answers = data.incorrect_answers.slice(0);
     const options = ["A", "B", "C", "D"];
     answers.push(correctAnswer);
@@ -40,14 +59,12 @@ function renderQuestion(index) {
     questionEl.innerHTML = questionHTML;
     optionsEl.innerHTML = optionsHTML;
 
-    pickAnswer();
+    pickAnswer(correctAnswer);
   }
 }
 
-function pickAnswer() {
+function pickAnswer(correctAnswer) {
   const answersEl = document.querySelectorAll(".option");
-
-  let userAnswer = "123";
 
   answersEl.forEach((element) => {
     element.addEventListener("click", () => {
