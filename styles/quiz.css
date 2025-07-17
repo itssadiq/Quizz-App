@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  background-color: #101828;
+  color: white;
+}
+
+header h4 {
+  font-weight: 400;
+}
+
+.main {
+  width: 40%;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.quiz-head {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.quiz-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.question {
+  margin-bottom: 10px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.options {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-weight: 300;
+}
+
+.option-a,
+.option-b,
+.option-c,
+.option-d {
+  cursor: pointer;
+}
+
+span {
+  background-color: #155dfc;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 0.9rem;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next {
+  padding: 15px;
+  width: 100px;
+  background-color: #155dfc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.previous {
+  padding: 15px;
+  width: 100px;
+  background-color: #e5e7eb;
+  color: #3b4253;
+  cursor: not-allowed;
+  border: none;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #101828;
+  position: fixed;
+  padding: 15px;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer h4 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+footer p {
+  color: #6787a3;
+}
