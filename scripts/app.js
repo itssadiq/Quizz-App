@@ -6,6 +6,7 @@ async function fetchData(categoryValue, difficultyValue) {
     const questions = data.results;
 
     localStorage.setItem("questions", JSON.stringify(questions));
+    return questions;
   } catch (error) {
     console.error(error);
   }
@@ -26,7 +27,6 @@ function makeButtonActive() {
   if (categoryValue && difficultyValue) {
     startEl.classList.remove("start");
     startEl.classList.add("start-active");
-    fetchData(categoryValue, difficultyValue);
     startEl.addEventListener("click", operation);
   } else {
     startEl.classList.remove("start-active");
@@ -36,5 +36,12 @@ function makeButtonActive() {
 }
 
 function operation() {
-  window.location.href = "quiz.html";
+  const categoryValue = categorySelectorEl.value;
+  const difficultyValue = difficultySelectorEl.value;
+
+  fetchData(categoryValue, difficultyValue);
+
+  setTimeout(() => {
+    window.location.href = "quiz.html";
+  }, 2000);
 }
