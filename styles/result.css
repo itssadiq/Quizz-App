@@ -10,20 +10,38 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+.main {
+  width: 50%;
+  margin: 0 auto;
+  height: 100vh;
   display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  background-color: #101828;
-  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
-header h4 {
-  font-weight: 400;
+.difficulty,
+.remarks {
+  color: #4b5667;
+}
+
+h3 {
+  color: #364153;
+}
+
+.result {
+  color: #155dfc;
+  font-size: 3em;
+}
+
+.try {
+  background-color: #155dfc;
+  color: white;
+  border: none;
+  width: 50%;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 footer {
