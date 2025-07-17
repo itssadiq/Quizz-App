@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles/welcome.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="heading">
+        <h1>Welcome to Quiz Challenge</h1>
+        <p>Select a category and difficulty level to start your quiz.</p>
+      </div>
+
+      <div class="selectors">
+        <div class="category-selector">
+          <label for="category">Select Category</label>
+          <select name="" id="category">
+            <option value="" selected>Choose a Category...</option>
+            <option value="9">General Knowledge</option>
+            <option value="18">Computer Science</option>
+            <option value="23">History</option>
+            <option value="21">Sports</option>
+          </select>
+        </div>
+
+        <div class="difficulty-selector">
+          <label for="difficulty">Select Difficulty</label>
+          <select name="" id="difficulty">
+            <option value="" selected>Choose difficulty level...</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <button type="button" class="start">Start Quiz</button>
+      </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+  </body>
+</html>
