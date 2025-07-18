@@ -3,12 +3,8 @@ const questionEl = document.querySelector(".question");
 const optionsEl = document.querySelector(".options");
 const nextBtn = document.querySelector(".next");
 
-nextBtn.addEventListener("click", showNextQuestion);
+nextBtn.addEventListener("click", evaluateandShowNextQuestion);
 
-// const result = JSON.parse(localStorage.getItem("result")) || {
-//   right: 0,
-//   wrong: 0,
-// };
 const result = {
   right: 0,
   wrong: 0,
@@ -18,9 +14,9 @@ let userAnswer = "";
 
 let question = 0;
 renderQuestion(question);
-updateQuestionCount();
+updateQuestionCountandNextButton();
 
-function showNextQuestion() {
+function evaluateandShowNextQuestion() {
   if (question >= 10) {
     return;
   } else {
@@ -29,7 +25,6 @@ function showNextQuestion() {
     } else {
       result.wrong++;
     }
-    console.log(result);
     localStorage.setItem("result", JSON.stringify(result));
     question++;
     renderQuestion(question);
@@ -59,11 +54,11 @@ function renderQuestion(index) {
     questionEl.innerHTML = questionHTML;
     optionsEl.innerHTML = optionsHTML;
 
-    pickAnswer(correctAnswer);
+    pickAnswer();
   }
 }
 
-function pickAnswer(correctAnswer) {
+function pickAnswer() {
   const answersEl = document.querySelectorAll(".option");
 
   answersEl.forEach((element) => {
@@ -80,17 +75,26 @@ function pickAnswer(correctAnswer) {
   });
 }
 
-function updateQuestionCount() {
+function updateQuestionCountandNextButton() {
   const quizHead = document.querySelector(".question-count");
-  let questionCount = 1;
+  let count = 1;
   nextBtn.addEventListener("click", () => {
-    if (questionCount >= 10) {
+    if (count >= 10) {
       return;
     } else {
-      questionCount++;
+      count++;
       quizHead.innerHTML = `
-        Question ${questionCount} of 10
+      Question ${count} of 10
       `;
+      if (count > 9) {
+        nextBtn.innerHTML = "See results";
+        nextBtn.removeEventListener("click", evaluateandShowNextQuestion);
+        nextBtn.addEventListener("click", showResults);
+      }
     }
   });
+}
+
+function showResults() {
+  window.location.href = "result.html";
 }

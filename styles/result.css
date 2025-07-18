@@ -42,6 +42,7 @@ h3 {
   width: 50%;
   padding: 15px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 footer {
