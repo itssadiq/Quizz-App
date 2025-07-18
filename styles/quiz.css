@@ -94,17 +94,18 @@ span {
   justify-content: space-between;
 }
 
-.next {
-  padding: 10px;
-  width: 100px;
+.next-active {
   background-color: #155dfc;
   color: white;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
 }
 
-.previous {
+.previous,
+.next {
   padding: 10px;
   width: 100px;
   background-color: #e5e7eb;

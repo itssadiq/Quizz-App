@@ -2,8 +2,23 @@ const questions = JSON.parse(localStorage.getItem("questions"));
 const questionEl = document.querySelector(".question");
 const optionsEl = document.querySelector(".options");
 const nextBtn = document.querySelector(".next");
+const quizHead = document.querySelector(".question-count");
+const categoryEl = document.querySelector(".category");
+const difficultyEl = document.querySelector(".difficulty");
 
-nextBtn.addEventListener("click", evaluateandShowNextQuestion);
+let { category, difficulty } = questions[0];
+const difficultyCapitalized =
+  difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+
+if (category == "Science: Computers") {
+  category = "Computer Science";
+}
+
+localStorage.setItem("category", JSON.stringify(category));
+localStorage.setItem("difficulty", JSON.stringify(difficultyCapitalized));
+
+categoryEl.innerHTML = `Category: ${category}`;
+difficultyEl.innerHTML = `Difficulty: ${difficultyCapitalized}`;
 
 const result = {
   right: 0,
@@ -14,7 +29,6 @@ let userAnswer = "";
 
 let question = 0;
 renderQuestion(question);
-updateQuestionCountandNextButton();
 
 function evaluateandShowNextQuestion() {
   if (question >= 10) {
@@ -27,6 +41,7 @@ function evaluateandShowNextQuestion() {
     }
     localStorage.setItem("result", JSON.stringify(result));
     question++;
+    updateQuestionCountandNextButton(question);
     renderQuestion(question);
   }
 }
@@ -61,6 +76,10 @@ function renderQuestion(index) {
 function pickAnswer() {
   const answersEl = document.querySelectorAll(".option");
 
+  nextBtn.classList.add("next");
+  nextBtn.classList.remove("next-active");
+  nextBtn.removeEventListener("click", evaluateandShowNextQuestion);
+
   answersEl.forEach((element) => {
     element.addEventListener("click", () => {
       answersEl.forEach((el) => {
@@ -71,28 +90,28 @@ function pickAnswer() {
       element.childNodes[0].classList.add("span-active");
       const elementValue = element.innerHTML;
       userAnswer = elementValue.replace(/<span[^>]*>.*?<\/span>/, "").trim();
+
+      nextBtn.classList.remove("next");
+      nextBtn.classList.add("next-active");
+      nextBtn.addEventListener("click", evaluateandShowNextQuestion);
     });
   });
 }
 
-function updateQuestionCountandNextButton() {
-  const quizHead = document.querySelector(".question-count");
-  let count = 1;
-  nextBtn.addEventListener("click", () => {
-    if (count >= 10) {
-      return;
-    } else {
-      count++;
-      quizHead.innerHTML = `
+function updateQuestionCountandNextButton(count) {
+  if (count >= 10) {
+    return;
+  } else {
+    count++;
+    quizHead.innerHTML = `
       Question ${count} of 10
       `;
-      if (count > 9) {
-        nextBtn.innerHTML = "See results";
-        nextBtn.removeEventListener("click", evaluateandShowNextQuestion);
-        nextBtn.addEventListener("click", showResults);
-      }
+    if (count > 9) {
+      nextBtn.innerHTML = "See results";
+      nextBtn.removeEventListener("click", evaluateandShowNextQuestion);
+      nextBtn.addEventListener("click", showResults);
     }
-  });
+  }
 }
 
 function showResults() {
