@@ -63,3 +63,11 @@ footer h4 {
 footer p {
   color: #6787a3;
 }
+
+@media screen and (max-width: 580px) {
+  .main {
+    width: 100%;
+    justify-content: start;
+    margin-top: 40%;
+  }
+}
