@@ -5,6 +5,40 @@ const nextBtn = document.querySelector(".next");
 const quizHead = document.querySelector(".question-count");
 const categoryEl = document.querySelector(".category");
 const difficultyEl = document.querySelector(".difficulty");
+const timerEl = document.querySelector(".timer");
+
+let timer = 180;
+function updateTimer() {
+  let minutes = Math.floor(timer / 60);
+  let seconds = timer % 60;
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+
+  timerEl.innerHTML = `${minutes}:${seconds}`;
+
+  if (timer > 0) {
+    timer--;
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Time's up! Quiz ended.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setTimeout(() => {
+      clearInterval(timerInterval);
+      window.location.href = "result.html";
+    }, 800);
+  }
+}
+const timerInterval = setInterval(updateTimer, 1000);
+updateTimer();
 
 let { category, difficulty } = questions[0];
 const difficultyCapitalized =

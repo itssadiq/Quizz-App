@@ -21,5 +21,6 @@ difficultyEl.innerHTML = `Difficulty: ${difficulty}`;
 
 resultEl.innerHTML = `${right}/10`;
 tryButton.addEventListener("click", () => {
+  localStorage.clear();
   window.location.href = "index.html";
 });

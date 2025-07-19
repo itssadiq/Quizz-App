@@ -1,3 +1,5 @@
+localStorage.clear();
+
 async function fetchData(categoryValue, difficultyValue) {
   const URL = `https://opentdb.com/api.php?amount=10&category=${categoryValue}&difficulty=${difficultyValue}&type=multiple`;
   try {
